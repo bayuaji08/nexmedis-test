@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';
+@custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
+@import './base.css';
+
+.p-toast-summary,
+.p-toast-detail {
+  @apply leading-4;
+}
