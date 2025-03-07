@@ -11,7 +11,7 @@ export const useRegisterStore = defineStore('register', () => {
   const toast = useToast()
   const loading = ref(false)
   const router = useRouter()
-  const { setToken } = useAuthStore()
+  const { setToken, setEmail } = useAuthStore()
 
   const schema = yup.object({
     email: yup.string().email('Invalid email').required('Email is required'),
@@ -28,6 +28,7 @@ export const useRegisterStore = defineStore('register', () => {
     try {
       const response = await registerUser(values)
       await setToken(response.data.token)
+      await setEmail(values.email)
 
       toast.add({
         severity: 'success',

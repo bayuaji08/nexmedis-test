@@ -7,7 +7,10 @@ const AppLayoutAuth = defineAsyncComponent(() => import('@/layouts/AppLayoutAuth
 const route = useRoute()
 const layouts = { AppLayoutDefault, AppLayoutAuth }
 
-const layout = computed(() => layouts[route.meta?.layout] || layouts['AppLayoutDefault'])
+const layout = computed(() => {
+  const layoutKey = route.meta?.layout as keyof typeof layouts
+  return layouts[layoutKey] || layouts['AppLayoutDefault']
+})
 </script>
 
 <template>

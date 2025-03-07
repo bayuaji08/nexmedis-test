@@ -1,5 +1,6 @@
 import type { Login } from '@/models/login'
 import type { Register } from '@/models/register'
+import type { User } from '@/models/user'
 import axios from 'axios'
 
 const api = axios.create({
@@ -42,4 +43,20 @@ export const registerUser = async (payload: Register) => {
 
 export const getAllUser = async (params = {}) => {
   return await api.get(`users`, { params })
+}
+
+export const getUser = async (id: number, params = {}) => {
+  return await api.get(`users/${id}`, { params })
+}
+
+export const createUser = async (payload: User) => {
+  return await api.post(`users`, payload)
+}
+
+export const updateUser = async (id: number, payload: User) => {
+  return await api.put(`users/${id}`, payload)
+}
+
+export const deleteUser = async (id: number) => {
+  return await api.delete(`users/${id}`)
 }

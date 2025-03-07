@@ -5,6 +5,7 @@ import { storeToRefs } from 'pinia'
 import UserCardItem from '@/components/UserCardItem.vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
+import AppConfirmToDelete from '@/components/AppConfirmToDelete.vue'
 
 const store = useHomeStore()
 const { users, resetData } = storeToRefs(store)
@@ -43,4 +44,6 @@ const { fetchUsers } = store
       </div>
     </template>
   </InfiniteLoading>
+
+  <AppConfirmToDelete />
 </template>

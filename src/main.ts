@@ -17,8 +17,11 @@ import {
   Ripple,
   ProgressSpinner,
   Menu,
+  ConfirmDialog,
+  Dialog,
 } from 'primevue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
+import ConfirmationService from 'primevue/confirmationservice'
 
 import 'primeicons/primeicons.css'
 
@@ -31,6 +34,8 @@ app.component('PButton', Button)
 app.component('PToast', Toast)
 app.component('PProgressSpinner', ProgressSpinner)
 app.component('PMenu', Menu)
+app.component('PConfirmDialog', ConfirmDialog)
+app.component('PDialog', Dialog)
 app.component('VeeForm', Form)
 app.component('VeeField', Field)
 app.component('VeeErrorMessage', ErrorMessage)
@@ -53,6 +58,7 @@ const MyPreset = definePreset(Aura, {
     },
   },
 })
+app.use(createPinia())
 
 app.use(PrimeVue, {
   ripple: true,
@@ -67,7 +73,7 @@ app.use(PrimeVue, {
     },
   },
 })
+app.use(ConfirmationService)
 app.use(ToastService)
-app.use(createPinia())
 app.use(router)
 app.mount('#app')

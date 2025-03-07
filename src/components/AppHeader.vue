@@ -2,8 +2,15 @@
 import overlay from '@/assets/img/overlay.png'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useHomeStore } from '@/stores/home'
+import { useProfileStore } from '@/stores/profile'
+import { storeToRefs } from 'pinia'
+const store = useProfileStore()
+const { profile } = storeToRefs(store)
 
 const { logout } = useAuthStore()
+
+const { openModalInputUser } = useHomeStore()
 
 const activeClassIcon = ' text-primary-900'
 const inactiveClassIcon = ' text-gray-500'
@@ -21,7 +28,7 @@ const inactiveClassTitle = 'text-gray-500 text-sm text-center'
         <div class="flex gap-4">
           <div class="flex-1">
             <span class="inline-block text-primary-50">Welcome Back</span>
-            <h5 class="text-xl font-semibold">Bayu Aji</h5>
+            <h5 class="text-xl font-semibold">{{ profile?.first_name }}</h5>
           </div>
 
           <div class="flex-none">
@@ -53,6 +60,7 @@ const inactiveClassTitle = 'text-gray-500 text-sm text-center'
             </RouterLink>
             <div class="border-l border-gray-200"></div>
             <div
+              @click="openModalInputUser()"
               v-ripple
               class="flex-1 p-2 flex flex-col gap-1 items-center relative overflow-hidden rounded hover:bg-primary-100 cursor-pointer"
             >
@@ -77,6 +85,6 @@ const inactiveClassTitle = 'text-gray-500 text-sm text-center'
         </div>
       </div>
     </div>
-    <div class="h-20 w-full bg-gradient-to-b from-gray-100 from-60% to-transparent"></div>
+    <div class="h-20 w-full bg-gradient-to-b from-gray-100 lg:from-40% to-transparent"></div>
   </div>
 </template>

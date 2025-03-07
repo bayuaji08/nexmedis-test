@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import AppHeader from '@/components/AppHeader.vue'
+import ModalInputUser from '@/components/ModalInputUser.vue'
+import { useProfileStore } from '@/stores/profile'
+import { onMounted } from 'vue'
+const { getProfile } = useProfileStore()
+
+onMounted(() => {
+  getProfile()
+})
 </script>
 
 <template>
@@ -11,6 +19,8 @@ import AppHeader from '@/components/AppHeader.vue'
     >
       <slot></slot>
     </div>
+
+    <ModalInputUser />
   </div>
 </template>
 

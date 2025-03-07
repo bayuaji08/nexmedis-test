@@ -6,13 +6,14 @@ import type { Login } from '@/models/login'
 import { useToast } from 'primevue/usetoast'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from './auth'
+import { value } from '@primeuix/themes/aura/knob'
 
 export const useLoginStore = defineStore('login', () => {
   const toast = useToast()
   const loading = ref(false)
   const router = useRouter()
 
-  const { setToken } = useAuthStore()
+  const { setToken, setEmail } = useAuthStore()
 
   const schema = yup.object({
     email: yup.string().email('Invalid email').required('Email is required'),
@@ -27,6 +28,7 @@ export const useLoginStore = defineStore('login', () => {
       const response = await loginUser(values)
 
       await setToken(response.data.token)
+      await setEmail(values.email)
 
       toast.add({
         severity: 'success',
